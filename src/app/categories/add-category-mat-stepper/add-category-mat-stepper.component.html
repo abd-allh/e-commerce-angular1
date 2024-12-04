@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <form [formGroup]="form">
+        <mat-stepper [linear]="isLinear" #stepper>
+          <mat-step [stepControl]="catForm1" label="Add Category">
+            <fieldset formGroupName="form1">
+              <ng-template matStepLabel>Add Category</ng-template>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <mat-form-field class="w-100">
+                      <mat-label>English Category Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Category Name En"
+                        formControlName="categoryNameEn"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <mat-form-field class="w-100">
+                      <mat-label>Arabic Category Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Category Name Ar"
+                        formControlName="categoryNameAr"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button mat-raised-button matStepperNext>Next</button>
+              </div>
+            </fieldset>
+          </mat-step>
+          <mat-step [stepControl]="subCatForm2" label="Add SubCategories">
+            <fieldset formGroupName="form2">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <mat-form-field class="w-100">
+                      <mat-label>English Sub-Category Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Sub-Category Name En"
+                        formControlName="subCategoryNameEn"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <mat-form-field class="w-100">
+                      <mat-label>Arabic Sub-Category Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Sub-Category Name Ar"
+                        formControlName="subCategoryNameAr"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button (click)="onSubmit()">
+                  {{ isEditMode ? "Update" : "Add" }}
+                </button>
+              </div>
+              <app-table [data]="data" (editRow)="onEditRow($event)" />
+            </fieldset>
+            <button
+              class="d-flex mt-3 ms-auto"
+              mat-raised-button
+              [hidden]="isHidden"
+              (click)="onSave()"
+            >
+              Save
+            </button>
+          </mat-step>
+        </mat-stepper>
+      </form>
+      <!-- <app-table /> -->
+    </div>
+  </div>
+</div>

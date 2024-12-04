@@ -1,0 +1,38 @@
+<!-- <section id="categories" class="categories page-container h-100 pb-5"> -->
+<section id="categories" class="categories">
+  <h2 class="text-center mb-5">All Categories</h2>
+  <input
+    type="search"
+    [(ngModel)]="searchTerm"
+    placeholder="Search by Name..."
+    class="form-control w-50 mx-auto form-control-sm my-3 p-1"
+  />
+  <div class="box-row">
+    <div *ngFor="let category of categories | searchCategory : searchTerm">
+      <div class="box shadow">
+        <a
+          class="text-decoration-none"
+          routerLink="/category-products/{{ category.name }}"
+        >
+          <div class="image">
+            <img [src]="category.image" alt="{{ category.name }}" />
+          </div>
+          <div class="info">
+            <p>{{ category.name }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex">
+    <button
+      appSuperBtn="canAddCategory"
+      class="btn btn-success ml-auto"
+      routerLink="/brands"
+    >
+      Add Category
+    </button>
+  </div>
+  <app-cdk-stepper />
+  <app-add-category-mat-stepper />
+</section>

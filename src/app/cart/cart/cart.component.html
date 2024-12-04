@@ -1,0 +1,138 @@
+@if(isLoading) {
+<!-- Placeholder Content -->
+<!-- <div class="page-container"> -->
+<section class="w-75 mx-auto rounded shadow bg-main-light p-3 mb-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <p-skeleton width="10rem" height="3rem" styleClass="mb-2 darker-skeleton" />
+
+    <p-skeleton width="5rem" height="2rem" styleClass="redish-skeleton" />
+  </div>
+  <p-skeleton width="7rem" height="1rem" styleClass="mb-2" />
+  <div class="row border-bottom py-2">
+    <div class="col-md-1">
+      <p-skeleton width="5rem" height="7rem" styleClass="" />
+    </div>
+
+    <div class="col-md-11 d-flex justify-content-between align-items-center">
+      <div class="flex-direction-column">
+        <h3>
+          <p-skeleton
+            width="7rem"
+            height="1rem"
+            styleClass="my-2 darker-skeleton"
+          />
+        </h3>
+        <p><p-skeleton width="4rem" height="1rem" styleClass="mb-2" /></p>
+        <p-skeleton
+          width="5rem"
+          height="1rem"
+          styleClass="mb-2 redish-skeleton"
+        />
+      </div>
+      <div>
+        <button class="btn btn-sm border-success blur">-</button
+        ><span> ... </span
+        ><button class="btn btn-sm border-success blur">+</button>
+      </div>
+    </div>
+  </div>
+  <div class="row border-bottom py-2">
+    <div class="col-md-1">
+      <p-skeleton width="5rem" height="7rem" styleClass="" />
+    </div>
+
+    <div class="col-md-11 d-flex justify-content-between align-items-center">
+      <div class="flex-direction-column">
+        <h3>
+          <p-skeleton
+            width="7rem"
+            height="1rem"
+            styleClass="my-2 darker-skeleton"
+          />
+        </h3>
+        <p><p-skeleton width="4rem" height="1rem" styleClass="mb-2" /></p>
+        <p-skeleton
+          width="5rem"
+          height="1rem"
+          styleClass="mb-2 redish-skeleton"
+        />
+      </div>
+      <div>
+        <button class="btn btn-sm border-success blur">-</button
+        ><span> ... </span
+        ><button class="btn btn-sm border-success blur">+</button>
+      </div>
+    </div>
+  </div>
+  <button class="main-btn mt-3 blur" tabindex="0">
+    Online Payment
+    <img src="ProjectAssets/visa-rounded.svg" alt="visa logo" />
+  </button>
+</section>
+<!-- </div> -->
+}
+<!-- Content -->
+@defer(when cart.totalCartPrice) {
+<!-- <div class="page-container h-100 pb-5"> -->
+<section class="w-75 mx-auto rounded shadow bg-main-light p-3 mb-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="h2">Shop Cart</h1>
+    <button (click)="clearCart()" class="btn btn-sm btn-outline-danger">
+      Clear Cart
+    </button>
+  </div>
+  <p class="text-main">Total Price: {{ cart.totalCartPrice }}</p>
+  <div *ngFor="let product of cart.products">
+    <div class="row border-bottom py-2">
+      <div class="col-md-1">
+        <div class="image">
+          <img
+            [src]="product.product.imageCover"
+            title="{{ product.title }}"
+            alt="{{ product.title }}"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-11 d-flex justify-content-between align-items-center">
+        <div class="flex-direction-column">
+          <h3 class="h6">{{ product.product.title }}</h3>
+          <p class="text-main small mb-0">Price: {{ product.price }}</p>
+          <button
+            (click)="removeProductFromCart(product.product._id)"
+            class="btn m-0 p-0 text-main text-danger"
+          >
+            <i class="fas fa-trash-can"></i>
+            Remove
+          </button>
+        </div>
+        <div>
+          <button
+            (click)="updateCount(product.product._id, product.count - 1)"
+            class="btn btn-sm border-success"
+          >
+            -</button
+          ><span> {{ product.count }} </span
+          ><button
+            (click)="updateCount(product.product._id, product.count + 1)"
+            class="btn btn-sm border-success"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="main-btn mt-3" tabindex="0" routerLink="/payment/{{ cartId }}">
+    Online Payment
+    <img src="ProjectAssets/visa-rounded.svg" alt="visa logo" />
+  </button>
+</section>
+<!-- </div> -->
+
+} @placeholder() {
+
+<div class="page-container d-flex justify-content-center align-items-center">
+  <h1>Your Cart Is Empty</h1>
+</div>
+}

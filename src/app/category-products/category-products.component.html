@@ -1,0 +1,121 @@
+<!-- <div class="page-container h-100 pb-5"> -->
+<!-- <section id="products" class="products h-100 pb-5"> -->
+<section id="products" class="products">
+  <h2 class="text-center mb-5">All Products</h2>
+  <!-- <input
+        type="text"
+        placeholder="Search..."
+        class="form-control w-50 mx-auto form-control-sm my-3 p-1"
+      /> -->
+  <div class="box-grid">
+    @for(product of categoryProducts;track $index){
+    <div class="box shadow-sm">
+      <a
+        class="text-decoration-none"
+        routerLink="/product-details/{{ product.id }}"
+      >
+        <div class="image">
+          <img
+            [src]="product.imageCover"
+            title="{{ product.title }}"
+            alt="{{ product.title }}"
+          />
+        </div>
+        <div class="info">
+          <h6 class="title text-black">{{ product.title }}</h6>
+          <p class="">
+            {{ product.category.name }}
+          </p>
+        </div>
+      </a>
+      <div class="price d-flex justify-content-between">
+        @if (product.priceAfterDiscount) {
+        <span>{{ product.priceAfterDiscount }}<span> £e</span></span>
+        <div class="crossed-holder">
+          <span class="crossed">{{ product.price }}</span>
+        </div>
+        } @else {
+        <span>{{ product.price }}<span> £e</span></span>
+        }
+        <div class="d-flex align-items-center rating-holder">
+          <span class="rating"
+            ><p-rating
+              [(ngModel)]="product.ratingsAverage"
+              [cancel]="false"
+            /><span class="average"> {{ product.ratingsAverage }}</span></span
+          >
+        </div>
+      </div>
+      <div class="btn-holder">
+        <button class="main-btn w-100 py-2">+Add To Cart</button>
+      </div>
+    </div>
+
+    } @empty {
+    <div class="else">
+      <div class="fallback">
+        <h1>This Category is Currently Has No Products!</h1>
+        <p>Try Again Later...</p>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+<!-- </div> -->
+<!-- dfskgjhdskjghskf -->
+
+<!-- <ng-container *ngIf="categoryProducts.length > 0; else fallback">
+    <div *ngFor="let product of categoryProducts">
+      <div class="box shadow-sm">
+        <a
+          class="text-decoration-none"
+          routerLink="/product-details/{{ product.id }}"
+        >
+          <div class="image">
+            <img
+              [src]="product.imageCover"
+              title="{{ product.title }}"
+              alt="{{ product.title }}"
+            />
+          </div>
+          <div class="info">
+            <h6 class="title text-black">{{ product.title }}</h6>
+            <p class="">
+              {{ product.category.name }}
+            </p>
+          </div>
+        </a>
+        <div class="price d-flex justify-content-between">
+          @if (product.priceAfterDiscount) {
+          <span>{{ product.priceAfterDiscount }}<span> £e</span></span>
+          <div class="crossed-holder">
+            <span class="crossed">{{ product.price }}</span>
+          </div>
+          } @else {
+          <span>{{ product.price }}<span> £e</span></span>
+          }
+          <div class="d-flex align-items-center rating-holder">
+            <span class="rating"
+              ><p-rating
+                [(ngModel)]="product.ratingsAverage"
+                [cancel]="false"
+              /><span class="average">
+                {{ product.ratingsAverage }}</span
+              ></span
+            >
+          </div>
+        </div>
+        <div class="btn-holder">
+          <button class="main-btn w-100 py-2">+Add To Cart</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #fallback class="">
+    <div class="else">
+      <div class="fallback">
+        <h1>This Category is Currently Has No Products!</h1>
+        <p>Try Again Later...</p>
+      </div>
+    </div>
+  </ng-template> -->

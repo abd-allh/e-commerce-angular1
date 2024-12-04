@@ -1,0 +1,68 @@
+<!-- <div class="container page-container"> -->
+<section class="w-75 mx-auto shadow rounded p-4 my-3 bg-main-light">
+  <h1 class="my-3">{{ "CART.CHECKOUT" | translate }}</h1>
+  <form [formGroup]="checkOutForm" class="">
+    <div class="form-item">
+      <!-- <div>{{form['details'].errors | json}}</div> -->
+      <label for="details">{{ "CART.DETAILS" | translate }}</label
+      ><input
+        formControlName="details"
+        type="text"
+        id="details"
+        class="form-control"
+      />
+    </div>
+    <div class="form-item">
+      <label for="phone">{{ "CART.PHONE" | translate }}</label
+      ><input
+        formControlName="phone"
+        type="tel"
+        id="phone"
+        class="form-control"
+      />
+      <div>
+        <p
+          *ngIf="
+            form['phone'].hasError('required') &&
+            (form['phone'].touched || form['phone'].dirty)
+          "
+          class="alert alert-danger py-1 mt-1 m-0"
+        >
+          This field is required
+        </p>
+        <p
+          *ngIf="
+            form['phone'].hasError('pattern') &&
+            (form['phone'].touched || form['phone'].dirty)
+          "
+          class="alert alert-danger py-1 mt-1 m-0"
+        >
+          Must Egypt Phone
+        </p>
+      </div>
+    </div>
+    <div class="form-item">
+      <label for="city">{{ "CART.CITY" | translate }}</label
+      ><input
+        formControlName="city"
+        type="text"
+        id="city"
+        class="form-control"
+      />
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <button type="button" class="main-btn" (click)="handleCODCheckout()">
+        {{ "CART.PAY_COD" | translate }}
+      </button>
+      <button
+        type="button"
+        class="main-btn py-0"
+        (click)="handleVisaCheckout()"
+      >
+        {{ "CART.PAY_BY_VISA" | translate }}
+        <img src="ProjectAssets/visa-rounded.svg" alt="visa logo" />
+      </button>
+    </div>
+  </form>
+</section>
+<!-- </div> -->

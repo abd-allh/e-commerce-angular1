@@ -1,0 +1,178 @@
+<p-table
+  dir="ltr"
+  [value]="allOrders"
+  dataKey="_id"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  [expandedRowKeys]="expandedRows"
+  (onRowExpand)="onRowExpand($event)"
+  (onRowCollapse)="onRowCollapse($event)"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex flex-wrap justify-content-end gap-2 p-3">
+      <p-button
+        label="Expand All"
+        icon="pi pi-plus"
+        text
+        (onClick)="expandAll()"
+      />
+      <p-button
+        label="Collapse All"
+        icon="pi pi-minus"
+        text
+        (onClick)="collapseAll()"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 5rem"></th>
+      <th pSortableColumn="user.name">
+        Customer Name <p-sortIcon field="user.name" />
+      </th>
+
+      <th pSortableColumn="totalOrderPrice">
+        Total Price <p-sortIcon field="totalOrderPrice" />
+      </th>
+      <th pSortableColumn="paymentMethodType">
+        Payment Method <p-sortIcon field="paymentMethodType" />
+      </th>
+      <th pSortableColumn="isPaid">Paid <p-sortIcon field="isPaid" /></th>
+      <th pSortableColumn="isDelivered">
+        Delivered <p-sortIcon field="isDelivered" />
+      </th>
+      <th pSortableColumn="createdAt">
+        Order Date <p-sortIcon field="createdAt" />
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-order let-expanded="expanded">
+    <tr>
+      <td>
+        <p-button
+          type="button"
+          pRipple
+          [pRowToggler]="order"
+          [text]="true"
+          [rounded]="true"
+          [plain]="true"
+          [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+        ></p-button>
+      </td>
+      <td>{{ order.user.name }}</td>
+
+      <td>{{ order.totalOrderPrice | currency }}</td>
+      <td>{{ order.paymentMethodType }}</td>
+      <!-- <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false" /></td> -->
+      <!-- <td><p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" /></td> -->
+      <td>
+        <p-tag
+          [value]="order.isPaid ? 'Yes, he\'s rich' : 'No, he\'s poor'"
+          [severity]="order.isPaid ? 'success' : 'danger'"
+        ></p-tag>
+      </td>
+      <td>
+        <p-tag
+          [value]="order.isDelivered ? 'Yes it is' : 'No, not yet'"
+          [severity]="order.isDelivered ? 'success' : 'warning'"
+        ></p-tag>
+      </td>
+      <td>{{ order.createdAt | date : "short" }}</td>
+    </tr>
+  </ng-template>
+
+  <!-- Expanded Row Details -->
+  <ng-template pTemplate="rowexpansion" let-order>
+    <tr>
+      <td colspan="7">
+        <div class="p-3">
+          <h4>Order Details</h4>
+          <div class="row">
+            <div class="col-8">
+              <p>
+                <strong>Shipping Address:</strong>
+                {{ order.shippingAddress?.details }}
+              </p>
+              <p><strong>City:</strong> {{ order.shippingAddress?.city }}</p>
+            </div>
+            <div class="col-4">
+              <p><strong>Phone:</strong> {{ order.shippingAddress?.phone }}</p>
+              <p>
+                <strong>Price:</strong>
+                {{ order.totalOrderPrice | currency }}
+              </p>
+            </div>
+          </div>
+          <p-table [value]="order.cartItems" dataKey="_id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="w-50">Product</th>
+                <th>Image</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr>
+                <td class="w-50">{{ item.product.title }}</td>
+                <td>
+                  <img
+                    [src]="item.product.imageCover"
+                    [alt]="item.product.title"
+                    width="50"
+                    class="shadow-3"
+                  />
+                </td>
+                <td>{{ item.count }}</td>
+                <td>{{ item.price | currency }}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="3">No items in the cart for this order.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <!-- <ng-template pTemplate="rowexpansion" let-product>
+    <tr>
+        <td colspan="7">
+            <div class="p-3">
+                <p-table [value]="product.orders" dataKey="id">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="id">Id <p-sortIcon field="price" /></th>
+                            <th pSortableColumn="customer">Customer <p-sortIcon field="customer" /></th>
+                            <th pSortableColumn="date">Date <p-sortIcon field="date" /></th>
+                            <th pSortableColumn="amount">Amount <p-sortIcon field="amount" /></th>
+                            <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+                            <th style="width: 4rem"></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-order>
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.customer }}</td>
+                            <td>{{ order.date }}</td>
+                            <td>{{ order.amount | currency : 'USD' }}</td>
+                            <td>
+                                <p-tag [value]="order.status" [severity]="getStatusSeverity(order.status)" />
+                            </td>
+                            <td><p-button type="button" icon="pi pi-search" /></td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="6">There are no order for this product yet.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </td>
+    </tr>
+</ng-template> -->
+</p-table>

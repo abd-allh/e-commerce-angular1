@@ -1,0 +1,61 @@
+<form [formGroup]="form">
+  <div class="mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="subCategoryNameEn"
+            formControlName="subCategoryNameEn"
+            placeholder="subCategoryNameEn"
+          />
+          <label for="subCategoryNameEn">SubCategory Name En</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="subCategoryNameSlug"
+            formControlName="subCategoryNameSlug"
+            placeholder="subCategoryNameSlug"
+          />
+          <label for="subCategoryNameSlug">SubCategory Name Slug</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="subCategoryAr"
+            formControlName="subCategoryAr"
+            placeholder="subCategoryAr"
+          />
+          <label for="subCategoryAr">SubCategory Ar</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="subCategoryCreatedAt"
+            placeholder="subCategoryCreatedAt"
+            value="{{ date | date }}"
+            readonly
+            disabled
+          />
+          <label for="subCategoryCreatedAt">SubCategory CreatedAt</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between flex-row mb-5 mt-4">
+    <button class="btn btn-outline-success" cdkStepperPrevious>
+      <i class="fa fa-angle-left"></i> back To Category
+    </button>
+    <button class="btn btn-outline-success" cdkStepperNext (click)="onSubmit()">
+      Add Category <i class="fa fa-angle-right"></i>
+    </button>
+    <!-- submit button -->
+  </div>
+</form>

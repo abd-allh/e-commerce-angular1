@@ -1,0 +1,144 @@
+<nav
+  class="navbar navbar-expand-lg position-fixed w-100 z-3 shadow-sm"
+  aria-label="Offcanvas navbar large"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="active"
+      ><img src="ProjectAssets/freshcart-logo.svg" alt="Logo"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar2"
+      aria-controls="offcanvasNavbar2"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="offcanvas offcanvas-end text-bg-dark"
+      tabindex="-1"
+      id="offcanvasNavbar2"
+      aria-labelledby="offcanvasNavbar2Label"
+    >
+      <div class="offcanvas-body">
+        <ng-template [ngIf]="isLoggedIn">
+          <ul class="navbar-nav me-auto mt-2 mt-lg-0 pe-3 align-items-center">
+            <li class="nav-item">
+              <a
+                routerLinkActive="active-link"
+                routerLink="/home"
+                class="nav-link btn btn-sm btn-shape active-link"
+                >{{ "NAVBAR.HOME" | translate }}</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                routerLinkActive="active-link"
+                routerLink="/products"
+                class="nav-link btn btn-sm btn-shape"
+                >{{ "NAVBAR.PRODUCTS" | translate }}</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                routerLinkActive="active-link"
+                routerLink="/categories"
+                class="nav-link btn btn-sm btn-shape"
+                >{{ "NAVBAR.CATEGORIES" | translate }}</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                routerLinkActive="active-link"
+                routerLink="/brands"
+                class="nav-link btn btn-sm btn-shape"
+                >{{ "NAVBAR.BRANDS" | translate }}</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                routerLinkActive="active-link"
+                routerLink="/allorders"
+                class="nav-link btn btn-sm btn-shape"
+                >{{ "NAVBAR.ORDERS" | translate }}</a
+              >
+            </li>
+          </ul>
+          <ul
+            class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3"
+          >
+            <li>
+              <button class="btn btn-sm mx-2 btn-lang" (click)="setLanguage()">
+                {{ "GENERAL.LANGUAGE" | translate }}
+              </button>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                class="nav-link dropdown-toggle"
+                ><i class="fas fa-user fa-xl text-main green"></i
+              ></a>
+              <ul class="dropdown-menu">
+                <li
+                  role="button"
+                  routerLink="/forgot"
+                  routerLinkActive="active-link"
+                  tabindex="0"
+                >
+                  <a class="dropdown-item">{{
+                    "FORM.FORGET_PASSWORD" | translate
+                  }}</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/cart" class="nav-link position-relative"
+                ><i class="fas fa-cart-shopping fa-2x text-main green"></i
+                ><span class="badge bg-info position-absolute top-0 end-0">
+                  {{ numOfCartItems }}
+                </span></a
+              >
+            </li>
+            <li class="nav-link ms-2 color-dark">
+              <span role="button" (click)="logOut()">{{
+                "TOPBAR.LOGOUT" | translate
+              }}</span>
+            </li>
+          </ul>
+        </ng-template>
+
+        <ng-template [ngIf]="!isLoggedIn">
+          <ul
+            class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3"
+          >
+            <li>
+              <button class="btn btn-sm mx-2 btn-lang" (click)="setLanguage()">
+                {{ "GENERAL.LANGUAGE" | translate }}
+              </button>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-sm btn-shape fs-6 active-link"
+                routerLink="/login"
+                routerLinkActive="active-link"
+                >{{ "FORM.SIGN_IN" | translate }}</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-sm btn-shape fs-6"
+                routerLink="/register"
+                routerLinkActive="active-link"
+                >{{ "FORM.SIGN_UP" | translate }}</a
+              >
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>

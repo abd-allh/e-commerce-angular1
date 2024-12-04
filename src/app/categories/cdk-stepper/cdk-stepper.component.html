@@ -1,0 +1,17 @@
+<div class="container cdk">
+  <div class="row">
+    <h2 class="text-center mt-4">Add Category</h2>
+    <div class="col-md-9 mx-auto">
+      <app-add-category-stepper
+        [linearModeSelected]="true"
+        #appAddCategoryStepper
+      >
+        <cdk-step [label]="'Add Category'"> <app-add-category /> </cdk-step>
+        <cdk-step [label]="'Add SubCategories'">
+          <app-add-sub-categories />
+        </cdk-step>
+        <cdk-step [label]="'Finish'"> <app-finish /> </cdk-step>
+      </app-add-category-stepper>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.orders-container {
+  padding: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.orders-table th,
+.orders-table td {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #f4f4f4;
+}
+
+/** Alternating row background colors **/
+.even-row {
+  background-color: #f9f9f9;
+}
+
+.odd-row {
+  background-color: #fff;
+}
+
+/** Styling for the paid and unpaid statuses **/
+.paid-status {
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.unpaid-status {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/** Styling rows for paid orders **/
+.paid-row {
+  border-left: 2px solid #28a745;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #007bff;
+}

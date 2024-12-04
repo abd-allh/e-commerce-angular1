@@ -1,0 +1,74 @@
+<div class="container page-container">
+  <section
+    class="w-50 mx-auto shadow rounded p-3 my-3 bg-main-light text-center"
+  >
+    <form [formGroup]="otpForm" class="" (ngSubmit)="handelOtp()">
+      <h1>Type Your otp</h1>
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        <p class="text-color-secondary block mt-4">
+          Please enter the code sent to your e-mail.
+        </p>
+        <p-inputOtp
+          class="mb-5"
+          name="resetCode"
+          formControlName="resetCode"
+          [(ngModel)]="value"
+          [integerOnly]="true"
+          [length]="6"
+          style="gap: 0"
+        >
+          <ng-template
+            pTemplate="input"
+            let-token
+            let-events="events"
+            let-index="index"
+          >
+            <input
+              pInputText
+              type="text"
+              [maxLength]="1"
+              (input)="events.input($event)"
+              (keydown)="events.keydown($event)"
+              [attr.value]="token"
+              class="custom-otp-input"
+            />
+            <div *ngIf="index === 3" class="px-3">
+              <i class="pi pi-minus"></i>
+            </div>
+          </ng-template>
+        </p-inputOtp>
+      </div>
+
+      <!-- ERR N BTN -->
+      <!-- <div>
+        <p
+          *ngIf="
+            form['resetCode'].hasError('required') &&
+            (form['resetCode'].touched || form['resetCode'].dirty)
+          "
+          class="alert alert-danger py-1 mt-1 m-0"
+        >
+          This field is required
+        </p>
+        <p
+          *ngIf="
+            form['resetCode'].hasError('maxlength') &&
+            (form['resetCode'].touched || form['resetCode'].dirty)
+          "
+          class="alert alert-danger py-1 mt-1 m-0"
+        >
+          Max Length is 6 Char
+        </p>
+      </div> -->
+
+      <button class="btn main-btn w-100 mt-3" [disabled]="otpForm.invalid">
+        <i
+          *ngIf="isLoading"
+          class="fa fa-spinner fa-spin mx-1"
+          aria-hidden="true"
+        ></i
+        >Verify OTP
+      </button>
+    </form>
+  </section>
+</div>

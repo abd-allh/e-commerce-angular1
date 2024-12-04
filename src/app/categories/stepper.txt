@@ -1,0 +1,23 @@
+ng new stepper
+
+npm i bootstrap@5
+npm i ngx-bootstrap
+npm i font-awesome
+
+"styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/font-awesome/css/font-awesome.min.css",
+  "src/styles.css"
+],
+
+#### add cdk stepper component ####
+
+ng add @angular/cdk
+y
+import { CdkStepperModule } from '@angular/cdk/stepper';
+
+#############################################################
+
+ng add @angular/material
+y
+import { MatStepperModule } from '@angular/material/stepper';

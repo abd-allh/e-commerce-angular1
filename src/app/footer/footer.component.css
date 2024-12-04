@@ -1,0 +1,23 @@
+html {
+  height: 100vh !important;
+}
+.footer {
+  background-color: #f0f3f2;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 247.59px;
+}
+.btn-shape-green {
+  background-color: var(--main-color);
+  color: #ffffff;
+  border: none;
+  font-weight: lighter;
+  font-size: 17px;
+  border-radius: 5px;
+}
+@media (max-width: 320px) {
+  .info {
+    flex-direction: column;
+  }
+}

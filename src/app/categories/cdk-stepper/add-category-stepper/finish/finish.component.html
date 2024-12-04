@@ -1,0 +1,39 @@
+<div class="mt-4">
+  <!-- <div class="row" *ngFor="let category of categories"> -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <h6 class="text-secondary">
+          Category Name En:
+          <span class="fw-normal text-black">{{
+            category.categoryNameEn
+          }}</span>
+        </h6>
+      </div>
+      <div class="form-floating">
+        <h6 class="text-secondary">
+          Category Name Ar:
+          <span class="fw-normal text-black">{{ category.categoryAr }}</span>
+        </h6>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <h6 class="text-secondary">
+          SubCategory Name En:
+          <span class="fw-normal text-black">{{
+            subCategory.subCategoryNameEn
+          }}</span>
+        </h6>
+      </div>
+      <div class="form-floating">
+        <h6 class="text-secondary">
+          SubCategory Name Ar:
+          <span class="fw-normal text-black">{{
+            subCategory.subCategoryAr
+          }}</span>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
